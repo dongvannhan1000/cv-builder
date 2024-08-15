@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import GeneralInfo from './components/GeneralInfo';
+import Education from './components/Education';
+import Experience from './components/Experience';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isEditing, setIsEditing] = useState(true);
+  const [cv, setCV] = useState({
+    generalInfo: { name: '', email: '', phone: '' },
+    education: { school: '', study: '', date: '' },
+    experience: { company: '', position: '', responsibilities: '', startDate: '', endDate: '' }
+  });
+
+  const handleChange = (section) => (e) => {
+    const { name, value } = e.target;
+    setCV(prevCV => ({
+      ...prevCV,
+      [section]: {
+        ...prevCV[section],
+        [name]: value
+      }
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsEditing(false);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <h1>CV Application</h1>
+      <form onSubmit={handleSubmit}>
+        <GeneralInfo
+          info={cv.generalInfo}
+          onChange={handleChange('generalInfo')}
+          isEditing={isEditing}
+        />
+        <Education
+          education={cv.education}
+          onChange={handleChange('education')}
+          isEditing={isEditing}
+        />
+        <Experience
+          experience={cv.experience}
+          onChange={handleChange('experience')}
+          isEditing={isEditing}
+        />
+        {isEditing ? (
+          <button type="submit">Submit CV</button>
+        ) : (
+          <button type="button" onClick={() => setIsEditing(true)}>Edit CV</button>
+        )}
+      </form>
+    </div>
+  );
 }
 
-export default App
+export default App;
