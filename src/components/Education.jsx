@@ -6,33 +6,45 @@ const Education = ({ education, onChange, isEditing }) => {
     <div className="education">
       <h2>Education</h2>
       {isEditing ? (
-        <>
-          <input
-            type="text"
-            name="school"
-            placeholder="School Name"
-            value={education.school}
-            onChange={onChange}
-          />
-          <input
-            type="text"
-            name="study"
-            placeholder="Title of Study"
-            value={education.study}
-            onChange={onChange}
-          />
-          <input
-            type="date"
-            name="date"
-            value={education.date}
-            onChange={onChange}
-          />
-        </>
+        <div className="input-group">
+          <div className="input-field">
+            <label htmlFor="school">School Name</label>
+            <input
+              type="text"
+              id="school"
+              name="school"
+              value={education.school}
+              onChange={onChange}
+              placeholder="University of Example"
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="study">Field of Study</label>
+            <input
+              type="text"
+              id="study"
+              name="study"
+              value={education.study}
+              onChange={onChange}
+              placeholder="Computer Science"
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="date">Graduation Date</label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              value={education.date}
+              onChange={onChange}
+            />
+          </div>
+        </div>
       ) : (
-        <div>
-          <p>School: {education.school}</p>
-          <p>Study: {education.study}</p>
-          <p>Date: {education.date}</p>
+        <div className="info-display">
+          <p><strong>School:</strong> {education.school}</p>
+          <p><strong>Field of Study:</strong> {education.study}</p>
+          <p><strong>Graduation Date:</strong> {education.date}</p>
         </div>
       )}
     </div>

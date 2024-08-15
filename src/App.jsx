@@ -28,29 +28,52 @@ function App() {
     setIsEditing(false);
   };
 
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
   return (
     <div className="App">
-      <h1>CV Application</h1>
+      <h1>CV Builder</h1>
       <form onSubmit={handleSubmit}>
-        <GeneralInfo
-          info={cv.generalInfo}
-          onChange={handleChange('generalInfo')}
-          isEditing={isEditing}
-        />
-        <Education
-          education={cv.education}
-          onChange={handleChange('education')}
-          isEditing={isEditing}
-        />
-        <Experience
-          experience={cv.experience}
-          onChange={handleChange('experience')}
-          isEditing={isEditing}
-        />
         {isEditing ? (
-          <button type="submit">Submit CV</button>
+          <div key="editing">
+            <GeneralInfo
+              info={cv.generalInfo}
+              onChange={handleChange('generalInfo')}
+              isEditing={isEditing}
+            />
+            <Education
+              education={cv.education}
+              onChange={handleChange('education')}
+              isEditing={isEditing}
+            />
+            <Experience
+              experience={cv.experience}
+              onChange={handleChange('experience')}
+              isEditing={isEditing}
+            />
+            <button type="submit" className="submit-button">Generate CV</button>
+          </div>
         ) : (
-          <button type="button" onClick={() => setIsEditing(true)}>Edit CV</button>
+          <div key="viewing">
+            <GeneralInfo
+              info={cv.generalInfo}
+              onChange={handleChange('generalInfo')}
+              isEditing={isEditing}
+            />
+            <Education
+              education={cv.education}
+              onChange={handleChange('education')}
+              isEditing={isEditing}
+            />
+            <Experience
+              experience={cv.experience}
+              onChange={handleChange('experience')}
+              isEditing={isEditing}
+            />
+            <button type="button" className="submit-button" onClick={handleEdit}>Edit CV</button>
+          </div>
         )}
       </form>
     </div>

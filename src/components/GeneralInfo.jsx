@@ -6,34 +6,46 @@ const GeneralInfo = ({ info, onChange, isEditing }) => {
     <div className="general-info">
       <h2>General Information</h2>
       {isEditing ? (
-        <>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={info.name}
-            onChange={onChange}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={info.email}
-            onChange={onChange}
-          />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone"
-            value={info.phone}
-            onChange={onChange}
-          />
-        </>
+        <div className="input-group">
+          <div className="input-field">
+            <label htmlFor="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={info.name}
+              onChange={onChange}
+              placeholder="John Doe"
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={info.email}
+              onChange={onChange}
+              placeholder="johndoe@example.com"
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="phone">Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={info.phone}
+              onChange={onChange}
+              placeholder="+1 (555) 123-4567"
+            />
+          </div>
+        </div>
       ) : (
-        <div>
-          <p>Name: {info.name}</p>
-          <p>Email: {info.email}</p>
-          <p>Phone: {info.phone}</p>
+        <div className="info-display">
+          <p><strong>Name:</strong> {info.name}</p>
+          <p><strong>Email:</strong> {info.email}</p>
+          <p><strong>Phone:</strong> {info.phone}</p>
         </div>
       )}
     </div>

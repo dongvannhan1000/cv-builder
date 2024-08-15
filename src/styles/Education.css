@@ -1,14 +1,62 @@
+/* src/styles/Education.css */
 .education {
-  background-color: #e6f3ff;
+  background-color: #ffffff;
   padding: 20px;
   margin-bottom: 20px;
-  border-radius: 5px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.education input {
-  width: 100%;
+.education h2 {
+  color: #2c3e50;
+  border-bottom: 2px solid #e74c3c;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.input-field input {
   padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #bdc3c7;
   border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.input-field input:focus {
+  outline: none;
+  border-color: #e74c3c;
+}
+
+.info-display p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.info-display strong {
+  font-weight: bold;
+  color: #34495e;
+}
+
+/* Specific styling for date input */
+input[type="date"] {
+  font-family: inherit;
+  color: #2c3e50;
 }
