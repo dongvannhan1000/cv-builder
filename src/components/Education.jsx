@@ -1,7 +1,7 @@
 import '../styles/Education.css';
 import PropTypes from 'prop-types';
 
-const Education = ({ education, onChange, isEditing }) => {
+const Education = ({ education, onChange, onRemove, isEditing }) => {
   return (
     <div className="education">
       <h2>Education</h2>
@@ -39,6 +39,7 @@ const Education = ({ education, onChange, isEditing }) => {
               onChange={onChange}
             />
           </div>
+          <button type="button" onClick={onRemove} className="remove-button">Remove Education</button>
         </div>
       ) : (
         <div className="info-display">
@@ -58,6 +59,7 @@ Education.propTypes = {
     date: PropTypes.string.isRequired
   }).isRequired,
   onChange: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
   isEditing: PropTypes.bool.isRequired
 };
 

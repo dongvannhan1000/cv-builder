@@ -76,3 +76,17 @@ input[type="date"] {
   font-family: inherit;
   color: #2c3e50;
 }
+
+.remove-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.remove-button:hover {
+  background-color: #ff3333;
+}

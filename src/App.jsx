@@ -8,18 +8,38 @@ function App() {
   const [isEditing, setIsEditing] = useState(true);
   const [cv, setCV] = useState({
     generalInfo: { name: '', email: '', phone: '' },
-    education: { school: '', study: '', date: '' },
-    experience: { company: '', position: '', responsibilities: '', startDate: '', endDate: '' }
+    educations: [{ id: Date.now(), school: '', study: '', date: '' }],
+    experiences: [{ id: Date.now(), company: '', position: '', responsibilities: '', startDate: '', endDate: '' }]
   });
 
-  const handleChange = (section) => (e) => {
+  const handleChange = (section) => (e, id) => {
     const { name, value } = e.target;
     setCV(prevCV => ({
       ...prevCV,
-      [section]: {
+      [section]: Array.isArray(prevCV[section])
+        ? prevCV[section].map(item => 
+            item.id === id ? { ...item, [name]: value } : item
+          )
+        : { ...prevCV[section], [name]: value }
+    }));
+  };
+
+  const addNewItem = (section) => {
+    setCV(prevCV => ({
+      ...prevCV,
+      [section]: [
         ...prevCV[section],
-        [name]: value
-      }
+        section === 'educations'
+          ? { id: Date.now(), school: '', study: '', date: '' }
+          : { id: Date.now(), company: '', position: '', responsibilities: '', startDate: '', endDate: '' }
+      ]
+    }));
+  };
+
+  const removeItem = (section, id) => {
+    setCV(prevCV => ({
+      ...prevCV,
+      [section]: prevCV[section].filter(item => item.id !== id)
     }));
   };
 
@@ -43,16 +63,26 @@ function App() {
               onChange={handleChange('generalInfo')}
               isEditing={isEditing}
             />
-            <Education
-              education={cv.education}
-              onChange={handleChange('education')}
-              isEditing={isEditing}
-            />
-            <Experience
-              experience={cv.experience}
-              onChange={handleChange('experience')}
-              isEditing={isEditing}
-            />
+            {cv.educations.map((edu) => (
+              <Education
+                key={edu.id}
+                education={edu}
+                onChange={(e) => handleChange('educations')(e, edu.id)}
+                onRemove={() => removeItem('educations', edu.id)}
+                isEditing={isEditing}
+              />
+            ))}
+            <button className="add-button" type="button" onClick={() => addNewItem('educations')}>Add Education</button>
+            {cv.experiences.map((exp) => (
+              <Experience
+                key={exp.id}
+                experience={exp}
+                onChange={(e) => handleChange('experiences')(e, exp.id)}
+                onRemove={() => removeItem('experiences', exp.id)}
+                isEditing={isEditing}
+              />
+            ))}
+            <button className="add-button" type="button" onClick={() => addNewItem('experiences')}>Add Experience</button>
             <button type="submit" className="submit-button">Generate CV</button>
           </div>
         ) : (
@@ -62,16 +92,24 @@ function App() {
               onChange={handleChange('generalInfo')}
               isEditing={isEditing}
             />
-            <Education
-              education={cv.education}
-              onChange={handleChange('education')}
-              isEditing={isEditing}
-            />
-            <Experience
-              experience={cv.experience}
-              onChange={handleChange('experience')}
-              isEditing={isEditing}
-            />
+            {cv.educations.map((edu) => (
+              <Education
+                key={edu.id}
+                education={edu}
+                onChange={(e) => handleChange('educations')(e, edu.id)}
+                onRemove={() => removeItem('educations', edu.id)}
+                isEditing={isEditing}
+              />
+            ))}
+            {cv.experiences.map((exp) => (
+              <Experience
+                key={exp.id}
+                experience={exp}
+                onChange={(e) => handleChange('experiences')(e, exp.id)}
+                onRemove={() => removeItem('experiences', exp.id)}
+                isEditing={isEditing}
+              />
+            ))}
             <button type="button" className="submit-button" onClick={handleEdit}>Edit CV</button>
           </div>
         )}

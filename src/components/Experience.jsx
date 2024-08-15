@@ -1,7 +1,7 @@
 import '../styles/Experience.css';
 import PropTypes from 'prop-types';
 
-const Experience = ({ experience, onChange, isEditing }) => {
+const Experience = ({ experience, onChange, onRemove, isEditing }) => {
   return (
     <div className="experience">
       <h2>Work Experience</h2>
@@ -61,6 +61,7 @@ const Experience = ({ experience, onChange, isEditing }) => {
               />
             </div>
           </div>
+          <button type="button" onClick={onRemove} className="remove-button">Remove Experience</button>
         </div>
       ) : (
         <div className="info-display">
@@ -83,6 +84,7 @@ Experience.propTypes = {
     endDate: PropTypes.string.isRequired
   }).isRequired,
   onChange: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
   isEditing: PropTypes.bool.isRequired
 };
 

@@ -40,11 +40,11 @@ button:hover {
 
 .submit-button {
   display: block;
-  width: 200px; /* Đặt chiều rộng cố định cho nút */
+  width: 200px; 
   margin: 20px auto;
   font-size: 18px;
   padding: 12px 24px;
-  background-color: #3498db; /* Màu nền khác biệt */
+  background-color: #3498db; 
   color: white;
   border: none;
   border-radius: 4px;
@@ -53,5 +53,23 @@ button:hover {
 }
 
 .submit-button:hover {
-  background-color: #2980b9; /* Màu nền khi hover */
+  background-color: #2980b9; 
+}
+
+.add-button {
+  display: block;
+  width: 200px; 
+  margin: 20px auto;
+  font-size: 18px;
+  padding: 12px 24px;
+  background-color: #4CAF50; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #45a049; 
 }
